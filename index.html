@@ -1,3 +1,17 @@
+<h1>Totalize Infinite
+
+Absolutely! Here's your **fully updated HTML** with:
+
+- ✅ **Dark Mode toggle**
+- ✅ **Difficulty & decimal controls**
+- ✅ **iPhone-friendly input**
+- ✅ Works great on both light and dark backgrounds
+
+---
+
+## 🌙 Full `index.html` with Dark Mode
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,80 +19,208 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Totalize Infinite</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f7f7f7; }
-    .step { font-size: 1.2em; margin: 10px 0; }
-    #resultInput { font-size: 1.5em; padding: 10px; width: 80%; }
-    button { font-size: 1.2em; margin: 10px; padding: 10px 20px; cursor: pointer; }
-    #feedback { font-size: 1.3em; margin-top: 20px; }
+    :root {
+      --bg-light: #f7f7f7;
+      --bg-dark: #1e1e1e;
+      --text-light: #000;
+      --text-dark: #f0f0f0;
+      --card-light: #ffffff;
+      --card-dark: #2b2b2b;
+    }
+
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    select, input[type="checkbox"] {
+      font-size: 1em;
+      margin: 10px;
+      padding: 5px;
+    }
+
+    .step {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    #resultInput {
+      font-size: 1.5em;
+      padding: 10px;
+      width: 80%;
+      max-width: 300px;
+      background-color: var(--card-light);
+      border: 1px solid #ccc;
+      color: inherit;
+    }
+
+    body.dark #resultInput {
+      background-color: var(--card-dark);
+      border: 1px solid #555;
+      color: var(--text-dark);
+    }
+
+    button {
+      font-size: 1.2em;
+      margin: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    #feedback {
+      font-size: 1.3em;
+      margin-top: 20px;
+    }
+
+    .top-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: inline-block;
+      margin: 5px 10px;
+    }
   </style>
 </head>
 <body>
   <h1>Totalize Infinite</h1>
+
+  <div class="top-controls">
+    <label>Difficulty:
+      <select id="difficultySelect">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </label>
+
+    <label>
+      <input type="checkbox" id="allowDecimals" checked />
+      Allow decimals (0.5, 0.25, etc.)
+    </label>
+
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+  </div>
+
   <p><strong>Start:</strong> <span id="startNum"></span></p>
   <div id="steps"></div>
-  <input id="resultInput" type="number" placeholder="Enter your result"/>
-  <br>
+
+  <input
+    id="resultInput"
+    type="number"
+    step="any"
+    placeholder="Enter your result"
+    inputmode="decimal"
+    pattern="[0-9]*"
+  />
+  <br />
   <button onclick="checkAnswer()">Check Answer</button>
   <button onclick="generatePuzzle()">New Puzzle</button>
+
   <p id="feedback"></p>
 
   <script>
     let operations = [];
     let correctAnswer = 0;
 
-    function generatePuzzle(difficulty = 'medium') {
-      document.getElementById('feedback').innerText = '';
+    function generatePuzzle() {
+      document.getElementById("feedback").innerText = "";
+      const difficulty = document.getElementById("difficultySelect").value;
+      const allowDecimals = document.getElementById("allowDecimals").checked;
+
       let start = Math.floor(Math.random() * 200) + 50;
-      operations = generateOps(9, difficulty);
-      document.getElementById('startNum').innerText = start;
+      operations = generateOps(9, difficulty, allowDecimals);
+
+      document.getElementById("startNum").innerText = start;
       let current = start;
-      const stepText = operations.map(op => {
-        let text = '';
-        if (op.type === 'add') {
+
+      const stepText = operations.map((op) => {
+        let text = "";
+        if (op.type === "add") {
           current += op.value;
           text = `+ ${op.value}`;
-        } else if (op.type === 'subtract') {
+        } else if (op.type === "subtract") {
           current -= op.value;
           text = `– ${op.value}`;
-        } else if (op.type === 'multiply') {
+        } else if (op.type === "multiply") {
           current *= op.value;
           text = `× ${op.value}`;
-        } else if (op.type === 'divide') {
-          current = Math.floor(current / op.value);
+        } else if (op.type === "divide") {
+          current /= op.value;
           text = `÷ ${op.value}`;
         }
         return `<div class="step">${text}</div>`;
       });
-      correctAnswer = current;
-      document.getElementById('steps').innerHTML = stepText.join('');
+
+      correctAnswer = Math.round(current * 100) / 100;
+      document.getElementById("steps").innerHTML = stepText.join("");
     }
 
-    function generateOps(count, difficulty) {
+    function generateOps(count, difficulty, allowDecimals) {
       const ops = [];
       const ranges = {
         easy: [1, 10],
         medium: [5, 20],
-        hard: [10, 50]
+        hard: [10, 50],
       }[difficulty];
-      const types = ['add', 'subtract', 'multiply', 'divide'];
+
+      const types = ["add", "subtract", "multiply", "divide"];
+      const niceDecimals = allowDecimals ? [0.25, 0.5, 0.2, 2, 3, 4, 5] : [2, 3, 4, 5];
+
       for (let i = 0; i < count; i++) {
         const type = types[Math.floor(Math.random() * types.length)];
-        const value = Math.floor(Math.random() * (ranges[1] - ranges[0] + 1)) + ranges[0];
+        let value;
+        if (type === "multiply" || type === "divide") {
+          value = niceDecimals[Math.floor(Math.random() * niceDecimals.length)];
+        } else {
+          value = Math.floor(Math.random() * (ranges[1] - ranges[0] + 1)) + ranges[0];
+        }
         ops.push({ type, value });
       }
+
       return ops;
     }
 
     function checkAnswer() {
-      const userVal = parseInt(document.getElementById('resultInput').value);
-      if (userVal === correctAnswer) {
-        document.getElementById('feedback').innerText = '✅ Correct!';
+      const userVal = parseFloat(document.getElementById("resultInput").value);
+      if (isNaN(userVal)) {
+        document.getElementById("feedback").innerText = "⚠️ Please enter a number.";
+        return;
+      }
+
+      const roundedUserVal = Math.round(userVal * 100) / 100;
+
+      if (roundedUserVal === correctAnswer) {
+        document.getElementById("feedback").innerText = "✅ Correct!";
       } else {
-        document.getElementById('feedback').innerText = `❌ Incorrect. The correct answer was ${correctAnswer}`;
+        document.getElementById("feedback").innerText =
+          `❌ Incorrect. The correct answer was ${correctAnswer}`;
       }
     }
 
-    generatePuzzle(); // Load a puzzle on startup
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    generatePuzzle(); // Load on startup
   </script>
 </body>
 </html>
