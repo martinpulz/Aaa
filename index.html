@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Totalize Infinite</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f7f7f7; }
     .step { font-size: 1.2em; margin: 10px 0; }
     #resultInput { font-size: 1.5em; padding: 10px; width: 80%; }
-    button { font-size: 1.2em; margin: 10px; padding: 10px 20px; }
+    button { font-size: 1.2em; margin: 10px; padding: 10px 20px; cursor: pointer; }
+    #feedback { font-size: 1.3em; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -27,7 +28,7 @@
 
     function generatePuzzle(difficulty = 'medium') {
       document.getElementById('feedback').innerText = '';
-      let start = Math.floor(Math.random() * 200) + 50; // 50–250 start
+      let start = Math.floor(Math.random() * 200) + 50;
       operations = generateOps(9, difficulty);
       document.getElementById('startNum').innerText = start;
       let current = start;
@@ -59,7 +60,6 @@
         medium: [5, 20],
         hard: [10, 50]
       }[difficulty];
-
       const types = ['add', 'subtract', 'multiply', 'divide'];
       for (let i = 0; i < count; i++) {
         const type = types[Math.floor(Math.random() * types.length)];
@@ -74,7 +74,7 @@
       if (userVal === correctAnswer) {
         document.getElementById('feedback').innerText = '✅ Correct!';
       } else {
-        document.getElementById('feedback').innerText = `❌ Incorrect. Answer was ${correctAnswer}`;
+        document.getElementById('feedback').innerText = `❌ Incorrect. The correct answer was ${correctAnswer}`;
       }
     }
 
