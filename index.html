@@ -1,212 +1,1413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Totalize Infinite</title>
-  <style>
-    :root {
-      --bg-light: #f7f7f7;
-      --bg-dark: #1e1e1e;
-      --text-light: #000;
-      --text-dark: #f0f0f0;
-      --card-light: #ffffff;
-      --card-dark: #2b2b2b;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Martin Pulz - Piano Lessons</title>
+    <meta name="description" id="page-description" content="Professional piano lessons with Martin Pulz. Learn piano with an experienced teacher.">
 
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 20px;
-      background-color: var(--bg-light);
-      color: var(--text-light);
-      transition: background 0.3s, color 0.3s;
-    }
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Martin Pulz - Piano Lessons">
+    <meta property="og:description" content="Professional piano lessons with Martin Pulz. Learn piano with an experienced teacher.">
+    <meta property="og:image" content="/assets/images/og-image.jpg">
 
-    body.dark {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
 
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    select, input[type="checkbox"] {
-      font-size: 1em;
-      margin: 10px;
-      padding: 5px;
-    }
-
-    .step {
-      font-size: 1.2em;
-      margin: 10px 0;
-    }
-
-    #resultInput {
-      font-size: 1.5em;
-      padding: 10px;
-      width: 80%;
-      max-width: 300px;
-      background-color: var(--card-light);
-      border: 1px solid #ccc;
-      color: inherit;
-    }
-
-    body.dark #resultInput {
-      background-color: var(--card-dark);
-      border: 1px solid #555;
-      color: var(--text-dark);
-    }
-
-    button {
-      font-size: 1.2em;
-      margin: 10px;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-
-    #feedback {
-      font-size: 1.3em;
-      margin-top: 20px;
-    }
-
-    .top-controls {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: inline-block;
-      margin: 5px 10px;
-    }
-  </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Totalize Infinite</h1>
+    <!-- Skip Link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-  <div class="top-controls">
-    <label>Difficulty:
-      <select id="difficultySelect">
-        <option value="easy">Easy</option>
-        <option value="medium" selected>Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-    </label>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a class="nav-logo" aria-label="Home" data-page="home">
+                <span>Martin Pulz</span>
+            </a>
 
-    <label>
-      <input type="checkbox" id="allowDecimals" checked />
-      Allow decimals (0.5, 0.25, etc.)
-    </label>
+            <div class="nav-links">
+                <a data-page="home" class="nav-link active">Home</a>
+                <a data-page="test" class="nav-link">Test</a>
+                <a data-page="booking" class="nav-link">Booking</a>
+                <a data-page="biography" class="nav-link">Biography</a>
 
-    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-  </div>
+                <div class="language-switcher" role="group" aria-label="Language selection">
+                    <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+                    <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-  <p><strong>Start:</strong> <span id="startNum"></span></p>
-  <div id="steps"></div>
+    <!-- Main Content -->
+    <main id="main" role="main">
+        <!-- HOME PAGE -->
+        <div id="home-page" class="page active">
+            <!-- Hero Section -->
+            <section class="scene" aria-labelledby="hero-title">
+                <div class="hero">
+                    <div class="hero__bg" role="img" aria-label="Martin Pulz portrait">
+                        <img src="https://img.com" alt="Martin Pulz portrait">
+                        <div class="hero-overlay"></div>
+                    </div>
+                    <div class="bubble glass-card">
+                        <h1 id="hero-title">Piano lessons and accompanying</h1>
+                        <p></p>
+                        <a class="cta-button primary" data-page="booking">Discover the joy of music</a>
+                    </div>
+                </div>
+            </section>
 
-  <input
-    id="resultInput"
-    type="number"
-    step="any"
-    placeholder="Enter your result"
-    inputmode="decimal"
-    pattern="[0-9]*"
-  />
-  <br />
-  <button onclick="checkAnswer()">Check Answer</button>
-  <button onclick="generatePuzzle()">New Puzzle</button>
 
-  <p id="feedback"></p>
 
-  <script>
-    let operations = [];
-    let correctAnswer = 0;
 
-    function generatePuzzle() {
-      document.getElementById("feedback").innerText = "";
-      const difficulty = document.getElementById("difficultySelect").value;
-      const allowDecimals = document.getElementById("allowDecimals").checked;
+            <!-- Photo Sequence Section -->
+            <section class="photo-sequence-scene">
+                <!-- Blur edge above photos -->
 
-      let start = Math.floor(Math.random() * 200) + 50;
-      operations = generateOps(9, difficulty, allowDecimals);
 
-      document.getElementById("startNum").innerText = start;
-      let current = start;
+                <!-- Photo 1: Personalized Learning - Small photo left, text right -->
+                <div class="photo-sequence-container layout-left" id="photo1">
+                    <div class="photo-sequence-content">
+                        <div class="photo-sequence-img-container">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Piano keys and sheet music" class="photo-sequence-img-small">
+                        </div>
+                        <div class="photo-sequence-text">
+                            <div class="approach-icon">🎹</div>
+                            <h3>Personalized Learning</h3>
+                            <p>Every student is unique. I adapt my teaching methods to match your learning style, pace, and musical goals.</p>
+                        </div>
+                    </div>
+                </div>
 
-      const stepText = operations.map((op) => {
-        let text = "";
-        if (op.type === "add") {
-          current += op.value;
-          text = `+ ${op.value}`;
-        } else if (op.type === "subtract") {
-          current -= op.value;
-          text = `– ${op.value}`;
-        } else if (op.type === "multiply") {
-          current *= op.value;
-          text = `× ${op.value}`;
-        } else if (op.type === "divide") {
-          current /= op.value;
-          text = `÷ ${op.value}`;
-        }
-        return `<div class="step">${text}</div>`;
-      });
+                <!-- Photo 2: Strong Foundation - Small photo right, text left -->
+                <div class="photo-sequence-container layout-right" id="photo2">
+                    <div class="photo-sequence-content">
+                        <div class="photo-sequence-text">
+                            <div class="approach-icon">🎼</div>
+                            <h3>Strong Foundation</h3>
+                            <p>Build solid technique and music theory knowledge that will serve you throughout your musical journey.</p>
+                        </div>
+                        <div class="photo-sequence-img-container">
+                            <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sheet music and piano" class="photo-sequence-img-small">
+                        </div>
+                    </div>
+                </div>
 
-      correctAnswer = Math.round(current * 100) / 100;
-      document.getElementById("steps").innerHTML = stepText.join("");
-    }
+                <!-- Photo 3: Musical Enjoyment - Full photo with centered text -->
+                <div class="photo-sequence-container layout-center" id="photo3">
+                    <div class="photo-sequence-bg">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Piano keys close-up" class="photo-sequence-img">
+                        <div class="photo-sequence-overlay"></div>
+                    </div>
+                    <div class="photo-sequence-text-center">
+                        <div class="approach-icon">🎵</div>
+                        <h3>Musical Enjoyment</h3>
+                        <p>Learning should be joyful. We'll explore music you love while expanding your repertoire and skills.</p>
+                    </div>
+                </div>
 
-    function generateOps(count, difficulty, allowDecimals) {
-      const ops = [];
-      const ranges = {
-        easy: [1, 10],
-        medium: [5, 20],
-        hard: [10, 50],
-      }[difficulty];
+                <!-- Blur edge below photos -->
 
-      const types = ["add", "subtract", "multiply", "divide"];
-      const niceDecimals = allowDecimals ? [0.25, 0.5, 0.2, 2, 3, 4, 5] : [2, 3, 4, 5];
+            </section>
 
-      for (let i = 0; i < count; i++) {
-        const type = types[Math.floor(Math.random() * types.length)];
-        let value;
-        if (type === "multiply" || type === "divide") {
-          value = niceDecimals[Math.floor(Math.random() * niceDecimals.length)];
-        } else {
-          value = Math.floor(Math.random() * (ranges[1] - ranges[0] + 1)) + ranges[0];
-        }
-        ops.push({ type, value });
-      }
+            <!-- Student Testimonials -->
+            <section class="accompanying" aria-labelledby="accompanying-title">
+                <div class="container">
+                    <h2 id="accompanying-title">What Students Say</h2>
+                    <div class="accompanying-grid">
+                        <div class="glass-card accompanying-card">
+                            <div class="accompanying-content">
+                                <p>"Martin's patient teaching style helped me overcome my fear of playing piano. Now I can play my favorite pieces with confidence!"</p>
+                                <cite class="accompanying-author">
+                                    <span>Sarah M.</span>
+                                    <span class="accompanying-role">Adult Beginner</span>
+                                </cite>
+                            </div>
+                        </div>
 
-      return ops;
-    }
+                        <div class="glass-card accompanying-card">
+                            <div class="accompanying-content">
+                                <p>"The lessons are always engaging and fun. Martin makes classical music accessible and exciting for young learners."</p>
+                                <cite class="accompanying-author">
+                                    <span>Emma's Parent</span>
+                                    <span class="accompanying-role">Young Student Family</span>
+                                </cite>
+                            </div>
+                        </div>
 
-    function checkAnswer() {
-      const userVal = parseFloat(document.getElementById("resultInput").value);
-      if (isNaN(userVal)) {
-        document.getElementById("feedback").innerText = "⚠️ Please enter a number.";
-        return;
-      }
+                        <div class="glass-card accompanying-card">
+                            <div class="testimonial-content">
+                                <p>"Excellent technique instruction and musical interpretation guidance. Martin helped me prepare for my music college auditions."</p>
+                                <cite class="accompanying-author">
+                                    <span>Alex K.</span>
+                                    <span class="accompanying-role">Advanced Student</span>
+                                </cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-      const roundedUserVal = Math.round(userVal * 100) / 100;
+            <!-- Media Section -->
+            <section class="media-section" aria-labelledby="media-title">
+                <div class="container">
+                    <div class="glass-card section-card">
+                        <h2 id="media-title">Performances & Teaching</h2>
+                        <div class="media-grid">
+                            <div class="media-item">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample Performance Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                                <h3>Chopin Nocturne Performance</h3>
+                                <p>A demonstration of expressive playing and technical precision in classical repertoire.</p>
+                            </div>
 
-      if (roundedUserVal === correctAnswer) {
-        document.getElementById("feedback").innerText = "✅ Correct!";
-      } else {
-        document.getElementById("feedback").innerText =
-          `❌ Incorrect. The correct answer was ${correctAnswer}`;
-      }
-    }
+                            <div class="media-item">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Teaching Demonstration Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                                <h3>Teaching Technique</h3>
+                                <p>See the teaching approach in action with a focus on proper hand position and musical expression.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-    }
+            <!-- Final CTA -->
+            <section class="final-cta" aria-labelledby="cta-title">
+                <div class="container">
+                    <div class="glass-card cta-card">
+                        <h2 id="cta-title">Start Learning Today</h2>
+                        <p>Ready to begin your musical journey? Book a lesson and discover the joy of playing piano.</p>
+                        <a class="cta-button primary" data-page="booking">Book Your First Lesson</a>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-    generatePuzzle(); // Load one on startup
-  </script>
+        <!-- BOOKING PAGE -->
+        <div id="booking-page" class="page">
+            <!-- Cal.com Scheduler Section -->
+            <section class="cal-section">
+                <div class="cal-container">
+                    <div class="cal-header">
+                        <h1>Schedule Your Piano Lesson</h1>
+                        <p>Choose your preferred lesson type and time. I offer both 30-minute trial lessons and full 60-minute sessions.</p>
+                    </div>
+
+                    <div class="cal-embed-container">
+                        <iframe 
+                            src="https://cal.com/martinpulz?embed=true&timeFormat=24h" 
+                            class="cal-embed"
+                            title="Schedule a lesson with Martin Pulz"
+                            loading="eager"
+                            scrolling="no">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section class="pricing-section">
+                <div class="container">
+                    <div class="glass-card pricing-card">
+                        <h2>Lesson Options & Pricing</h2>
+
+                        <div class="pricing-grid">
+                            <div class="pricing-item">
+                                <h3>Individual Lessons</h3>
+                                <div class="price">
+                                    <span class="currency">€</span>
+                                    <span class="amount">60</span>
+                                    <span class="period">/ hour</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li>One-on-one personalized instruction</li>
+                                    <li>Flexible scheduling</li>
+                                    <li>Customized lesson plans</li>
+                                    <li>Progress tracking</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-item featured">
+                                <div class="pricing-badge">Most Popular</div>
+                                <h3>4-Lesson Package</h3>
+                                <div class="price">
+                                    <span class="currency">€</span>
+                                    <span class="amount">220</span>
+                                    <span class="period">/ month</span>
+                                </div>
+                                <div class="price-note">Save €20 per month</div>
+                                <ul class="pricing-features">
+                                    <li>All individual lesson benefits</li>
+                                    <li>Priority booking</li>
+                                    <li>Practice materials included</li>
+                                    <li>Performance opportunities</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-item">
+                                <h3>Trial Lesson</h3>
+                                <div class="price">
+                                    <span class="currency">€</span>
+                                    <span class="amount">30</span>
+                                    <span class="period">/ 30 min</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li>Meet and assess your level</li>
+                                    <li>Discuss your musical goals</li>
+                                    <li>Experience my teaching style</li>
+                                    <li>No long-term commitment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Divider -->
+            <div class="container">
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Alternative Booking Methods -->
+            <section class="alternative-booking">
+                <div class="container">
+                    <h2>Prefer to Contact Me Directly?</h2>
+                    <p class="subtitle">Fill out this form and I'll get back to you within 24 hours to confirm your lesson</p>
+
+                    <!-- Contact Form -->
+                    <div class="glass-card booking-card">
+                        <h3>Send a Lesson Request</h3>
+
+                        <form class="booking-form" id="booking-form" novalidate>
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input 
+                                    type="text" 
+                                    id="fullName" 
+                                    name="fullName" 
+                                    required 
+                                    aria-describedby="fullName-error"
+                                    placeholder="Enter your full name">
+                                <div class="error-message" id="fullName-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required 
+                                    aria-describedby="email-error"
+                                    placeholder="your@email.com">
+                                <div class="error-message" id="email-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone"
+                                    aria-describedby="phone-help"
+                                    placeholder="+43 123 456 789">
+                                <small id="phone-help">Optional - for quick communication</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="experience">Experience Level *</label>
+                                <select id="experience" name="experience" required aria-describedby="experience-error">
+                                    <option value="">Choose your level...</option>
+                                    <option value="beginner">Complete Beginner</option>
+                                    <option value="some-experience">Some Experience</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                    <option value="returning">Returning to Piano</option>
+                                </select>
+                                <div class="error-message" id="experience-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preferredTime">Preferred Lesson Time</label>
+                                <select id="preferredTime" name="preferredTime">
+                                    <option value="">Select preferred time...</option>
+                                    <option value="morning">Morning (9:00 - 12:00)</option>
+                                    <option value="afternoon">Afternoon (13:00 - 17:00)</option>
+                                    <option value="evening">Evening (18:00 - 21:00)</option>
+                                    <option value="weekend">Weekends</option>
+                                    <option value="flexible">Flexible</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    rows="4"
+                                    placeholder="Tell me about your musical goals, favorite genres, or any questions you have"></textarea>
+                                <small>Tell me about your musical goals, favorite genres, or any questions you have</small>
+                            </div>
+
+                            <button type="submit" class="cta-button primary">Send Lesson Request</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BIOGRAPHY PAGE -->
+        <div id="biography-page" class="page">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="container">
+                    <div class="glass-card header-card">
+                        <h1>About Martin Pulz</h1>
+                        <p>Pianist, Teacher, and Musical Mentor</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portrait and Quick Bio -->
+            <section class="bio-intro">
+                <div class="container">
+                    <div class="glass-card bio-intro-card parallax-card">
+                        <div class="bio-intro-content">
+                            <div class="bio-portrait">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                    alt="Martin Pulz portrait"
+                                    class="portrait-image"
+                                    loading="lazy">
+                            </div>
+                            <div class="bio-intro-text">
+                                <h2>Welcome to My Musical World</h2>
+                                <p class="bio-intro-summary">
+                                    With over 15 years of experience as both a performer and educator, I am passionate about sharing the transformative power of music through piano instruction. My approach combines classical technique with contemporary understanding, creating a learning environment where students of all ages can flourish.
+                                </p>
+                                <div class="bio-highlights">
+                                    <div class="bio-highlight parallax-item">
+                                        <span class="highlight-number">15+</span>
+                                        <span class="highlight-text">Years Teaching</span>
+                                    </div>
+                                    <div class="bio-highlight parallax-item">
+                                        <span class="highlight-number">200+</span>
+                                        <span class="highlight-text">Students Taught</span>
+                                    </div>
+                                    <div class="bio-highlight parallax-item">
+                                        <span class="highlight-number">50+</span>
+                                        <span class="highlight-text">Performances</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Biography -->
+            <section class="detailed-bio">
+                <div class="container">
+                    <div class="bio-sections">
+                        <!-- Musical Journey -->
+                        <div class="glass-card bio-section">
+                            <h2>Musical Journey</h2>
+                            <div class="bio-text">
+                                <p>
+                                    My musical journey began at the age of six when I first touched the piano keys in my childhood home in Vienna. What started as curiosity quickly blossomed into passion, leading me through years of dedicated study and performance that would shape my life's work.
+                                </p>
+                                <p>
+                                    Throughout my teenage years, I immersed myself in both classical and contemporary music, participating in youth orchestras and jazz ensembles. This diverse musical exposure taught me that great music transcends genres and that each style offers unique insights into the art of expression.
+                                </p>
+                                <p>
+                                    As I transitioned from student to teacher, I discovered my true calling: helping others unlock their musical potential. There's nothing quite like witnessing the moment when a student finally masters a challenging piece or discovers their own musical voice.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Education & Credentials -->
+                        <div class="glass-card bio-section">
+                            <h2>Education & Credentials</h2>
+                            <div class="education-list">
+                                <div class="education-item">
+                                    <div class="education-year">2008</div>
+                                    <div class="education-content">
+                                        <h3>Master of Music in Piano Performance</h3>
+                                        <p class="education-institution">University of Music and Performing Arts Vienna</p>
+                                        <p class="education-description">Specialized in Classical and Romantic repertoire with additional focus on contemporary performance practices.</p>
+                                    </div>
+                                </div>
+
+                                <div class="education-item">
+                                    <div class="education-year">2010</div>
+                                    <div class="education-content">
+                                        <h3>Certificate in Music Pedagogy</h3>
+                                        <p class="education-institution">Mozarteum University Salzburg</p>
+                                        <p class="education-description">Advanced training in music education methodology and child psychology in musical learning.</p>
+                                    </div>
+                                </div>
+
+                                <div class="education-item">
+                                    <div class="education-year">2012</div>
+                                    <div class="education-content">
+                                        <h3>Music Therapy Certification</h3>
+                                        <p class="education-institution">European Music Therapy Institute</p>
+                                        <p class="education-description">Training in therapeutic applications of music for students with special needs and learning differences.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Teaching Philosophy -->
+                        <div class="glass-card bio-section">
+                            <h2>Teaching Philosophy</h2>
+                            <div class="philosophy-content">
+                                <blockquote class="philosophy-quote">
+                                    <p>"Every student brings unique gifts to music. My role is to nurture these gifts while providing the technical foundation needed for lifelong musical expression."</p>
+                                </blockquote>
+
+                                <div class="philosophy-principles">
+                                    <div class="principle-item">
+                                        <h4>Individual Growth</h4>
+                                        <p>I believe in adapting my teaching to each student's learning style, pace, and goals. Whether you're preparing for competitions or playing for personal joy, your journey is unique.</p>
+                                    </div>
+
+                                    <div class="principle-item">
+                                        <h4>Technical Excellence</h4>
+                                        <p>Strong technique is the foundation of musical freedom. I emphasize proper posture, finger independence, and efficient practice methods from the very beginning.</p>
+                                    </div>
+
+                                    <div class="principle-item">
+                                        <h4>Musical Joy</h4>
+                                        <p>Music should bring joy, not stress. I create a supportive environment where students feel safe to explore, make mistakes, and discover their musical voice.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Videos -->
+            <section class="performance-videos">
+                <div class="container">
+                    <div class="glass-card videos-section">
+                        <h2>Performance Videos</h2>
+                        <p>Experience my approach to musical interpretation through these performance recordings:</p>
+
+                        <div class="videos-grid">
+                            <div class="video-item">
+                                <div class="video-container">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                        title="Chopin Ballade No. 1 - Martin Pulz"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Chopin Ballade No. 1 in G minor</h3>
+                                    <p>Recorded live at Vienna Konzerthaus, showcasing romantic interpretation and technical mastery.</p>
+                                </div>
+                            </div>
+
+                            <div class="video-item">
+                                <div class="video-container">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                        title="Teaching Demonstration - Martin Pulz"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Teaching Demonstration</h3>
+                                    <p>Watch my teaching approach in action, focusing on technique development and musical expression.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="bio-cta">
+                <div class="container">
+                    <div class="glass-card cta-card">
+                        <h2>Ready to Start Your Musical Journey?</h2>
+                        <p>I'd love to help you discover your musical potential. Whether you're a complete beginner or looking to refine your skills, let's explore the wonderful world of piano together.</p>
+                        <div class="cta-buttons">
+                            <a class="cta-button primary" data-page="booking">Book a Lesson</a>
+                            <a href="mailto:martinpulz@gmail.com" class="cta-button secondary">Get in Touch</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- GERMAN HOME PAGE -->
+        <div id="home-de-page" class="page">
+            <!-- Hero Section -->
+            <section class="scene" aria-labelledby="hero-title-de">
+                <div class="hero">
+                    <div class="hero__bg" role="img" aria-label="Martin Pulz Portrait">
+                        <img src="MPhero.jpeg" alt="Martin Pulz portrait">
+                        <div class="hero-overlay"></div>
+                    </div>
+                    <div class="bubble glass-card">
+                        <h1 id="hero-title-de">Klavierunterricht und Begleitung</h1>
+                        <p></p>
+                        <a class="cta-button primary" data-page="booking-de">Entdecken Sie die Freude an der Musik</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Sequence Section -->
+            <section class="photo-sequence-scene">
+                <!-- Photo 1: Personalized Learning - Small photo left, text right -->
+                <div class="photo-sequence-container layout-left" id="photo1-de">
+                    <div class="photo-sequence-content">
+                        <div class="photo-sequence-img-container">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Klaviertasten und Notenblätter" class="photo-sequence-img-small">
+                        </div>
+                        <div class="photo-sequence-text">
+                            <div class="approach-icon">🎹</div>
+                            <h3>Personalisiertes Lernen</h3>
+                            <p>Jeder Schüler ist einzigartig. Ich passe meine Lehrmethoden an Ihren Lernstil, Ihr Tempo und Ihre musikalischen Ziele an.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 2: Strong Foundation - Small photo right, text left -->
+                <div class="photo-sequence-container layout-right" id="photo2-de">
+                    <div class="photo-sequence-content">
+                        <div class="photo-sequence-text">
+                            <div class="approach-icon">🎼</div>
+                            <h3>Solide Grundlage</h3>
+                            <p>Bauen Sie eine solide Technik und Musiktheorie auf, die Ihnen während Ihrer ganzen musikalischen Reise dienen wird.</p>
+                        </div>
+                        <div class="photo-sequence-img-container">
+                            <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Notenblätter und Klavier" class="photo-sequence-img-small">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 3: Musical Enjoyment - Full photo with centered text -->
+                <div class="photo-sequence-container layout-center" id="photo3-de">
+                    <div class="photo-sequence-bg">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Klaviertasten Nahaufnahme" class="photo-sequence-img">
+                        <div class="photo-sequence-overlay"></div>
+                    </div>
+                    <div class="photo-sequence-text-center">
+                        <div class="approach-icon">🎵</div>
+                        <h3>Musikalische Freude</h3>
+                        <p>Lernen sollte Freude bereiten. Wir erkunden Musik, die Sie lieben, während wir Ihr Repertoire und Ihre Fähigkeiten erweitern.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Testimonials -->
+            <section class="accompanying" aria-labelledby="accompanying-title-de">
+                <div class="container">
+                    <h2 id="accompanying-title-de">Was Schüler sagen</h2>
+                    <div class="accompanying-grid">
+                        <div class="glass-card accompanying-card">
+                            <div class="accompanying-content">
+                                <p>"Martins geduldiger Unterrichtsstil half mir, meine Angst vor dem Klavierspielen zu überwinden. Jetzt kann ich meine Lieblingsstücke mit Vertrauen spielen!"</p>
+                                <cite class="accompanying-author">
+                                    <span>Sarah M.</span>
+                                    <span class="accompanying-role">Erwachsene Anfängerin</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card accompanying-card">
+                            <div class="accompanying-content">
+                                <p>"Die Stunden sind immer ansprechend und machen Spaß. Martin macht klassische Musik für junge Lernende zugänglich und aufregend."</p>
+                                <cite class="accompanying-author">
+                                    <span>Emmas Eltern</span>
+                                    <span class="accompanying-role">Familie eines jungen Schülers</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card accompanying-card">
+                            <div class="testimonial-content">
+                                <p>"Ausgezeichneter Technikunterricht und Anleitung zur musikalischen Interpretation. Martin half mir bei der Vorbereitung auf meine Aufnahmeprüfungen für das Musikstudium."</p>
+                                <cite class="accompanying-author">
+                                    <span>Alex K.</span>
+                                    <span class="accompanying-role">Fortgeschrittener Schüler</span>
+                                </cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Media Section -->
+            <section class="media-section" aria-labelledby="media-title-de">
+                <div class="container">
+                    <div class="glass-card section-card">
+                        <h2 id="media-title-de">Aufführungen & Unterricht</h2>
+                        <div class="media-grid">
+                            <div class="media-item">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Beispiel Aufführungsvideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                                <h3>Chopin Nocturne Aufführung</h3>
+                                <p>Eine Demonstration expressiven Spiels und technischer Präzision im klassischen Repertoire.</p>
+                            </div>
+
+                            <div class="media-item">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Unterrichtsdemonstration Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                                <h3>Unterrichtstechnik</h3>
+                                <p>Sehen Sie den Unterrichtsansatz in Aktion mit Fokus auf richtige Handhaltung und musikalischen Ausdruck.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final CTA -->
+            <section class="final-cta" aria-labelledby="cta-title-de">
+                <div class="container">
+                    <div class="glass-card cta-card">
+                        <h2 id="cta-title-de">Beginnen Sie heute zu lernen</h2>
+                        <p>Bereit, Ihre musikalische Reise zu beginnen? Buchen Sie eine Stunde und entdecken Sie die Freude am Klavierspielen.</p>
+                        <a class="cta-button primary" data-page="booking-de">Buchen Sie Ihre erste Stunde</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TEST PAGE -->
+        <div id="test-page" class="page">
+            <!-- Expanding Bubbles Dim Overlay -->
+            <div class="expand-dim" id="expand-dim"></div>
+
+            <section class="bubble-grid-section">
+                <div class="bubble-grid-container">
+                    <h1 class="bubble-grid-title">What I Can Help You With</h1>
+                    
+                    <!-- Expanding Bubbles Container -->
+                    <div class="expand-container" id="expand-container">
+                        <div class="expand-row">
+                            <div class="expand-card" data-title="Accompanying">
+                                <span class="expand-title">Accompanying</span>
+                            </div>
+                            <div class="expand-card" data-title="Lessons">
+                                <span class="expand-title">Lessons</span>
+                            </div>
+                        </div>
+                        <div class="expand-card expand-small" data-title="Book a Probestunde">
+                            <span class="expand-title">Book a Probestunde</span>
+                        </div>
+                    </div>
+
+                    <div class="bubble-grid">
+                        <div class="bubble-item" data-category="vocal">
+                            <div class="bubble-icon">🎤</div>
+                            <h3>Vocal Accompanying</h3>
+                            <p>Professional piano accompaniment for vocalists</p>
+                        </div>
+
+                        <div class="bubble-item" data-category="instrumental">
+                            <div class="bubble-icon">🎻</div>
+                            <h3>Instrumental Accompanying</h3>
+                            <p>Support for string, wind, and brass instruments</p>
+                        </div>
+
+                        <div class="bubble-item" data-category="auditions">
+                            <div class="bubble-icon">🎭</div>
+                            <h3>Audition Preparation</h3>
+                            <p>Get ready for music school or professional auditions</p>
+                        </div>
+
+                        <div class="bubble-item" data-category="recitals">
+                            <div class="bubble-icon">🎹</div>
+                            <h3>Recital Performances</h3>
+                            <p>Accompaniment for student and professional recitals</p>
+                        </div>
+
+                        <div class="bubble-item" data-category="chamber">
+                            <div class="bubble-icon">🎼</div>
+                            <h3>Chamber Music</h3>
+                            <p>Collaborative performances in chamber ensembles</p>
+                        </div>
+
+                        <div class="bubble-item" data-category="recording">
+                            <div class="bubble-icon">🎙️</div>
+                            <h3>Recording Sessions</h3>
+                            <p>Studio accompaniment for recordings and demos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expanded booking overlay -->
+                <div class="bubble-overlay" id="bubbleOverlay">
+                    <button class="bubble-close" id="closeOverlay" aria-label="Close">×</button>
+                    <div class="bubble-overlay-content">
+                        <div class="overlay-header">
+                            <div class="overlay-icon"></div>
+                            <h2 class="overlay-title"></h2>
+                            <p class="overlay-description"></p>
+                        </div>
+                        
+                        <div class="overlay-booking">
+                            <h3>Schedule Your Session</h3>
+                            <div class="cal-embed-container">
+                                <iframe 
+                                    src="https://cal.com/martinpulz?embed=true&timeFormat=24h" 
+                                    class="cal-embed"
+                                    title="Schedule a session with Martin Pulz"
+                                    loading="lazy"
+                                    scrolling="no">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TESTIMONIALS PAGE -->
+        <div id="testimonials-page" class="page">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="container">
+                    <div class="glass-card header-card">
+                        <h1>What Students Say</h1>
+                        <p>Hear from students who have transformed their musical journey</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Testimonials -->
+            <section class="testimonials" aria-labelledby="testimonials-title">
+                <div class="container">
+                    <div class="testimonials-grid">
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Martin's patient teaching style helped me overcome my fear of playing piano. Now I can play my favorite pieces with confidence!"</p>
+                                <cite class="testimonial-author">
+                                    <span>Sarah M.</span>
+                                    <span class="testimonial-role">Adult Beginner</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"The lessons are always engaging and fun. Martin makes classical music accessible and exciting for young learners."</p>
+                                <cite class="testimonial-author">
+                                    <span>Emma's Parent</span>
+                                    <span class="testimonial-role">Young Student Family</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Excellent technique instruction and musical interpretation guidance. Martin helped me prepare for my music college auditions."</p>
+                                <cite class="testimonial-author">
+                                    <span>Alex K.</span>
+                                    <span class="testimonial-role">Advanced Student</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"After years away from piano, Martin helped me rediscover my love for music. His encouragement and expertise made all the difference."</p>
+                                <cite class="testimonial-author">
+                                    <span>Michael T.</span>
+                                    <span class="testimonial-role">Returning Student</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"My daughter has grown so much as a musician under Martin's guidance. He makes every lesson enjoyable and productive."</p>
+                                <cite class="testimonial-author">
+                                    <span>Lisa K.</span>
+                                    <span class="testimonial-role">Parent of Young Student</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Martin's deep understanding of music theory and technique has taken my playing to the next level. Highly recommended!"</p>
+                                <cite class="testimonial-author">
+                                    <span>David R.</span>
+                                    <span class="testimonial-role">Intermediate Student</span>
+                                </cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="bio-cta">
+                <div class="container">
+                    <div class="glass-card cta-card">
+                        <h2>Ready to Join Them?</h2>
+                        <p>Start your musical journey today and experience the joy of learning piano with personalized instruction.</p>
+                        <div class="cta-buttons">
+                            <a class="cta-button primary" data-page="booking">Book Your First Lesson</a>
+                            <a href="mailto:martinpulz@gmail.com" class="cta-button secondary">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- GERMAN TESTIMONIALS PAGE -->
+        <div id="testimonials-de-page" class="page">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="container">
+                    <div class="glass-card header-card">
+                        <h1>Was Schüler sagen</h1>
+                        <p>Hören Sie von Schülern, die ihre musikalische Reise verändert haben</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Testimonials -->
+            <section class="testimonials" aria-labelledby="testimonials-title">
+                <div class="container">
+                    <div class="testimonials-grid">
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Martins geduldiger Unterrichtsstil half mir, meine Angst vor dem Klavierspielen zu überwinden. Jetzt kann ich meine Lieblingsstücke mit Vertrauen spielen!"</p>
+                                <cite class="testimonial-author">
+                                    <span>Sarah M.</span>
+                                    <span class="testimonial-role">Erwachsene Anfängerin</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Die Stunden sind immer ansprechend und machen Spaß. Martin macht klassische Musik für junge Lernende zugänglich und aufregend."</p>
+                                <cite class="testimonial-author">
+                                    <span>Emmas Eltern</span>
+                                    <span class="testimonial-role">Familie eines jungen Schülers</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Ausgezeichneter Technikunterricht und Anleitung zur musikalischen Interpretation. Martin half mir bei der Vorbereitung auf meine Aufnahmeprüfungen für das Musikstudium."</p>
+                                <cite class="testimonial-author">
+                                    <span>Alex K.</span>
+                                    <span class="testimonial-role">Fortgeschrittener Schüler</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Nach Jahren ohne Klavier half mir Martin, meine Liebe zur Musik wiederzuentdecken. Seine Ermutigung und Expertise machten den Unterschied."</p>
+                                <cite class="testimonial-author">
+                                    <span>Michael T.</span>
+                                    <span class="testimonial-role">Wiedereinsteiger</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Meine Tochter ist unter Martins Anleitung so sehr als Musikerin gewachsen. Er macht jede Stunde angenehm und produktiv."</p>
+                                <cite class="testimonial-author">
+                                    <span>Lisa K.</span>
+                                    <span class="testimonial-role">Eltern eines jungen Schülers</span>
+                                </cite>
+                            </div>
+                        </div>
+
+                        <div class="glass-card testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Martins tiefes Verständnis von Musiktheorie und Technik hat mein Spiel auf die nächste Stufe gebracht. Sehr zu empfehlen!"</p>
+                                <cite class="testimonial-author">
+                                    <span>David R.</span>
+                                    <span class="testimonial-role">Fortgeschrittener Schüler</span>
+                                </cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="bio-cta">
+                <div class="container">
+                    <div class="glass-card cta-card">
+                        <h2>Bereit, sich ihnen anzuschließen?</h2>
+                        <p>Beginnen Sie heute Ihre musikalische Reise und erleben Sie die Freude am Klavierlernen mit personalisiertem Unterricht.</p>
+                        <div class="cta-buttons">
+                            <a class="cta-button primary" data-page="booking-de">Buchen Sie Ihre erste Stunde</a>
+                            <a href="mailto:martinpulz@gmail.com" class="cta-button secondary">Kontakt aufnehmen</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+                        
+
+        <!-- GERMAN BOOKING PAGE -->
+        <div id="booking-de-page" class="page">
+            <!-- Cal.com Scheduler Section -->
+            <section class="cal-section">
+                <div class="cal-container">
+                    <div class="cal-header">
+                        <h1>Terminieren Sie Ihre Klavierstunde</h1>
+                        <p>Wählen Sie Ihren bevorzugten Stundentyp und Ihre Zeit. Ich biete sowohl 30-minütige Probestunden als auch vollständige 60-minütige Einheiten an.</p>
+                    </div>
+
+                    <div class="cal-embed-container">
+                        <iframe 
+                            src="https://cal.com/martinpulz?timeFormat=24h" 
+                            class="cal-embed"
+                            title="Vereinbaren Sie eine Stunde mit Martin Pulz"
+                            loading="eager"
+                            scrolling="no">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section class="pricing-section">
+                <div class="container">
+                    <div class="glass-card pricing-card">
+                        <h2>Stundenoptionen & Preise</h2>
+
+                        <div class="pricing-grid">
+                            <div class="pricing-item">
+                                <h3>Einzelstunden</h3>
+                                <div class="price">
+                                    <span class="currency">€</span>
+                                    <span class="amount">60</span>
+                                    <span class="period">/ Stunde</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li>Persönlicher Einzelunterricht</li>
+                                    <li>Flexible Terminplanung</li>
+                                    <li>Angepasste Lernpläne</li>
+                                    <li>Fortschrittsverfolgung</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-item featured">
+                                <div class="pricing-badge">Beliebteste</div>
+                                <h3>4-Stunden-Paket</h3>
+                                <div class="price">
+                                    <span class="currency">€</span>
+                                    <span class="amount">220</span>
+                                    <span class="period">/ Monat</span>
+                                </div>
+                                <div class="price-note">Sparen Sie €20 pro Monat</div>
+                                <ul class="pricing-features">
+                                    <li>Alle Vorteile der Einzelstunden</li>
+                                    <li>Bevorzugte Buchung</li>
+                                    <li>Übungsmaterialien inklusive</li>
+                                    <li>Auftrittsmöglichkeiten</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-item">
+                                <h3>Probestunde</h3>
+                                <div class="price">
+                                    <span class="currency">€</span>
+                                    <span class="amount">30</span>
+                                    <span class="period">/ 30 Min</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li>Kennenlernen und Niveaueinschätzung</li>
+                                    <li>Besprechen Ihrer musikalischen Ziele</li>
+                                    <li>Erleben Sie meinen Unterrichtsstil</li>
+                                    <li>Keine langfristige Verpflichtung</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Divider -->
+            <div class="container">
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Alternative Booking Methods -->
+            <section class="alternative-booking">
+                <div class="container">
+                    <h2>Bevorzugen Sie direkten Kontakt?</h2>
+                    <p class="subtitle">Füllen Sie dieses Formular aus und ich melde mich innerhalb von 24 Stunden bei Ihnen zur Bestätigung Ihrer Stunde</p>
+
+                    <!-- Contact Form -->
+                    <div class="glass-card booking-card">
+                        <h3>Stundenanfrage senden</h3>
+
+                        <form class="booking-form" id="booking-form-de" novalidate>
+                            <div class="form-group">
+                                <label for="fullName-de">Vollständiger Name *</label>
+                                <input 
+                                    type="text" 
+                                    id="fullName-de" 
+                                    name="fullName" 
+                                    required 
+                                    aria-describedby="fullName-de-error"
+                                    placeholder="Geben Sie Ihren vollständigen Namen ein">
+                                <div class="error-message" id="fullName-de-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email-de">E-Mail-Adresse *</label>
+                                <input 
+                                    type="email" 
+                                    id="email-de" 
+                                    name="email" 
+                                    required 
+                                    aria-describedby="email-de-error"
+                                    placeholder="ihre@email.com">
+                                <div class="error-message" id="email-de-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone-de">Telefonnummer</label>
+                                <input 
+                                    type="tel" 
+                                    id="phone-de" 
+                                    name="phone"
+                                    aria-describedby="phone-de-help"
+                                    placeholder="+43 123 456 789">
+                                <small id="phone-de-help">Optional - für schnelle Kommunikation</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="experience-de">Erfahrungsniveau *</label>
+                                <select id="experience-de" name="experience" required aria-describedby="experience-de-error">
+                                    <option value="">Wählen Sie Ihr Niveau...</option>
+                                    <option value="beginner">Kompletter Anfänger</option>
+                                    <option value="some-experience">Etwas Erfahrung</option>
+                                    <option value="intermediate">Fortgeschritten</option>
+                                    <option value="advanced">Erfahren</option>
+                                    <option value="returning">Wiedereinsteiger</option>
+                                </select>
+                                <div class="error-message" id="experience-de-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preferredTime-de">Bevorzugte Stundenzeit</label>
+                                <select id="preferredTime-de" name="preferredTime">
+                                    <option value="">Bevorzugte Zeit wählen...</option>
+                                    <option value="morning">Vormittag (9:00 - 12:00)</option>
+                                    <option value="afternoon">Nachmittag (13:00 - 17:00)</option>
+                                    <option value="evening">Abend (18:00 - 21:00)</option>
+                                    <option value="weekend">Wochenende</option>
+                                    <option value="flexible">Flexibel</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message-de">Nachricht</label>
+                                <textarea 
+                                    id="message-de" 
+                                    name="message" 
+                                    rows="4"
+                                    placeholder="Erzählen Sie mir von Ihren musikalischen Zielen, Lieblingsstilen oder Fragen"></textarea>
+                                <small>Erzählen Sie mir von Ihren musikalischen Zielen, Lieblingsstilen oder Fragen</small>
+                            </div>
+
+                            <button type="submit" class="cta-button primary">Stundenanfrage senden</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- GERMAN BIOGRAPHY PAGE -->
+        <div id="biography-de-page" class="page">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="container">
+                    <div class="glass-card header-card">
+                        <h1>Über Martin Pulz</h1>
+                        <p>Pianist, Lehrer und musikalischer Mentor</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portrait and Quick Bio -->
+            <section class="bio-intro">
+                <div class="container">
+                    <div class="glass-card bio-intro-card parallax-card">
+                        <div class="bio-intro-content">
+                            <div class="bio-portrait">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                    alt="Martin Pulz Portrait"
+                                    class="portrait-image"
+                                    loading="lazy">
+                            </div>
+                            <div class="bio-intro-text">
+                                <h2>Willkommen in meiner musikalischen Welt</h2>
+                                <p class="bio-intro-summary">
+                                    Mit über 15 Jahren Erfahrung als Interpret und Pädagoge bin ich leidenschaftlich daran interessiert, die transformative Kraft der Musik durch Klavierunterricht zu teilen. Mein Ansatz verbindet klassische Technik mit zeitgemäßem Verständnis und schafft eine Lernumgebung, in der Schüler jeden Alters aufblühen können.
+                                </p>
+                                <div class="bio-highlights">
+                                    <div class="bio-highlight parallax-item">
+                                        <span class="highlight-number">15+</span>
+                                        <span class="highlight-text">Jahre Unterricht</span>
+                                    </div>
+                                    <div class="bio-highlight parallax-item">
+                                        <span class="highlight-number">200+</span>
+                                        <span class="highlight-text">Unterrichtete Schüler</span>
+                                    </div>
+                                    <div class="bio-highlight parallax-item">
+                                        <span class="highlight-number">50+</span>
+                                        <span class="highlight-text">Auftritte</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Biography -->
+            <section class="detailed-bio">
+                <div class="container">
+                    <div class="bio-sections">
+                        <!-- Musical Journey -->
+                        <div class="glass-card bio-section">
+                            <h2>Musikalische Reise</h2>
+                            <div class="bio-text">
+                                <p>
+                                    Meine musikalische Reise begann im Alter von sechs Jahren, als ich zum ersten Mal die Klaviertasten in meinem Elternhaus in Wien berührte. Was als Neugier begann, entwickelte sich schnell zu einer Leidenschaft, die mich durch Jahre des intensiven Studiums und der Aufführung führte, die mein Lebenswerk prägen sollten.
+                                </p>
+                                <p>
+                                    Während meiner Teenager-Jahre tauchte ich sowohl in klassische als auch zeitgenössische Musik ein und nahm an Jugendorchestern und Jazz-Ensembles teil. Diese vielfältige musikalische Erfahrung lehrte mich, dass große Musik Genres überschreitet und dass jeder Stil einzigartige Einblicke in die Kunst des Ausdrucks bietet.
+                                </p>
+                                <p>
+                                    Als ich vom Schüler zum Lehrer wurde, entdeckte ich meine wahre Berufung: anderen zu helfen, ihr musikalisches Potenzial zu entschlüsseln. Es gibt nichts Vergleichbares mit dem Moment, wenn ein Schüler endlich ein schwieriges Stück meistert oder seine eigene musikalische Stimme entdeckt.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Education & Credentials -->
+                        <div class="glass-card bio-section">
+                            <h2>Ausbildung & Qualifikationen</h2>
+                            <div class="education-list">
+                                <div class="education-item">
+                                    <div class="education-year">2008</div>
+                                    <div class="education-content">
+                                        <h3>Master of Music in Klavieraufführung</h3>
+                                        <p class="education-institution">Universität für Musik und darstellende Kunst Wien</p>
+                                        <p class="education-description">Spezialisierung auf klassisches und romantisches Repertoire mit zusätzlichem Fokus auf zeitgenössische Aufführungspraxis.</p>
+                                    </div>
+                                </div>
+
+                                <div class="education-item">
+                                    <div class="education-year">2010</div>
+                                    <div class="education-content">
+                                        <h3>Zertifikat in Musikpädagogik</h3>
+                                        <p class="education-institution">Universität Mozarteum Salzburg</p>
+                                        <p class="education-description">Fortgeschrittene Ausbildung in Musikerziehungsmethodik und Kinderpsychologie im musikalischen Lernen.</p>
+                                    </div>
+                                </div>
+
+                                <div class="education-item">
+                                    <div class="education-year">2012</div>
+                                    <div class="education-content">
+                                        <h3>Musiktherapie-Zertifizierung</h3>
+                                        <p class="education-institution">Europäisches Institut für Musiktherapie</p>
+                                        <p class="education-description">Ausbildung in therapeutischen Anwendungen von Musik für Schüler mit besonderen Bedürfnissen und Lernschwierigkeiten.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Teaching Philosophy -->
+                        <div class="glass-card bio-section">
+                            <h2>Unterrichtsphilosophie</h2>
+                            <div class="philosophy-content">
+                                <blockquote class="philosophy-quote">
+                                    <p>"Jeder Schüler bringt einzigartige Gaben zur Musik mit. Meine Rolle ist es, diese Gaben zu fördern und gleichzeitig das technische Fundament zu bieten, das für lebenslangen musikalischen Ausdruck benötigt wird."</p>
+                                </blockquote>
+
+                                <div class="philosophy-principles">
+                                    <div class="principle-item">
+                                        <h4>Individuelle Entwicklung</h4>
+                                        <p>Ich glaube daran, meinen Unterricht an den Lernstil, das Tempo und die Ziele jedes Schülers anzupassen. Ob Sie sich auf Wettbewerbe vorbereiten oder zum persönlichen Vergnügen spielen, Ihre Reise ist einzigartig.</p>
+                                    </div>
+
+                                    <div class="principle-item">
+                                        <h4>Technische Exzellenz</h4>
+                                        <p>Starke Technik ist das Fundament musikalischer Freiheit. Ich betone richtige Haltung, Fingerunabhängigkeit und effiziente Übungsmethoden von Anfang an.</p>
+                                    </div>
+
+                                    <div class="principle-item">
+                                        <h4>Musikalische Freude</h4>
+                                        <p>Musik sollte Freude bringen, nicht Stress. Ich schaffe eine unterstützende Umgebung, in der sich Schüler sicher fühlen zu erkunden, Fehler zu machen und ihre musikalische Stimme zu entdecken.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Videos -->
+            <section class="performance-videos">
+                <div class="container">
+                    <div class="glass-card videos-section">
+                        <h2>Aufführungsvideos</h2>
+                        <p>Erleben Sie meinen Ansatz zur musikalischen Interpretation durch diese Aufführungsaufnahmen:</p>
+
+                        <div class="videos-grid">
+                            <div class="video-item">
+                                <div class="video-container">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                        title="Chopin Ballade Nr. 1 - Martin Pulz"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Chopin Ballade Nr. 1 in g-Moll</h3>
+                                    <p>Live aufgenommen im Wiener Konzerthaus, zeigt romantische Interpretation und technische Meisterschaft.</p>
+                                </div>
+                            </div>
+
+                            <div class="video-item">
+                                <div class="video-container">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                        title="Unterrichtsdemonstration - Martin Pulz"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Unterrichtsdemonstration</h3>
+                                    <p>Sehen Sie meinen Unterrichtsansatz in Aktion, mit Fokus auf Technikentwicklung und musikalischen Ausdruck.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="bio-cta">
+                <div class="container">
+                    <div class="glass-card cta-card">
+                        <h2>Bereit, Ihre musikalische Reise zu beginnen?</h2>
+                        <p>Ich würde Ihnen gerne helfen, Ihr musikalisches Potenzial zu entdecken. Ob Sie ein kompletter Anfänger sind oder Ihre Fähigkeiten verfeinern möchten, lassen Sie uns gemeinsam die wunderbare Welt des Klaviers erkunden.</p>
+                        <div class="cta-buttons">
+                            <a class="cta-button primary" data-page="booking-de">Stunde buchen</a>
+                            <a href="mailto:martinpulz@gmail.com" class="cta-button secondary">Kontakt aufnehmen</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+
+
+
+
+
+        <div class="global-blur-edge top" aria-hidden="true"></div>
+        <div class="global-blur-edge bottom" aria-hidden="true"></div>
+
+
+
+
+
+
+
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footer-contact-title">Contact</h3>
+                    <p><a href="mailto:martinpulz@gmail.com">martinpulz@gmail.com</a></p>
+                    <p>+43 678 7924540</p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-social-title">Follow</h3>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@martin_pulz" aria-label="YouTube" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/martin_pulz" aria-label="Instagram" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.40z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <p class="footer-lang">-language-label">Language:</span>
+                        <span id="current-language">English</span>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Martin Pulz. <span id="footer-rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Apple-style blur overlay -->
+    <div class="apple-blur-overlay" aria-hidden="true"></div>
+
+
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
